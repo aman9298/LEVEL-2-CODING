@@ -1,0 +1,35 @@
+https://leetcode.com/problems/trapping-rain-water/solutions/
+
+Approach --
+Time Complexity : O(n)
+Aux Space : O(1)
+
+Description : First we compare 1st and the last no. to get the smaller no. b/w the two, then we go in the required if loop.
+For eg. if lmax = 3 and rmax = 5, then we'll go inside the if loop part not in the else part. After going in the if we do l++ 
+so that we can compare between lmax(arr[0]) and arr[l=1] (0th and 1st index element), then we update the lmax and then update the result by getting the difference.
+So basically we keep comparing and updating the following.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Solution {
+    public int trap(int[] arr) {
+        int n = arr.length;
+        int res = 0;
+        int l = 0;
+        int r = n-1;
+        int lmax = arr[l];
+        int rmax = arr[r];
+        
+        while(l<r){
+            if(lmax < rmax){
+                l++;
+                lmax = Math.max(lmax, arr[l]);
+                res += lmax-arr[l];
+            }else{
+                r--;
+                rmax = Math.max(rmax, arr[r]);
+                res += rmax-arr[r];
+            }
+        }
+        return res;
+    }
+}
