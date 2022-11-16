@@ -1,0 +1,32 @@
+https://leetcode.com/problems/3sum/
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+       List<List<Integer>> ans =  new ArrayList<>();
+        int i =0 ;
+        while( i < nums.length -2)
+        {  
+             int l = i+1 ,  r = nums.length-1 ;
+            while(l < r)
+            {
+           
+            int sum = nums[i] + nums[l] + nums[r];
+            if(sum == 0)
+            {
+                  List<Integer> triplet = new ArrayList<>();
+                  triplet.add(nums[i]);
+                triplet.add(nums[l]);
+                triplet.add(nums[r]);
+                ans.add(triplet);
+            }
+            
+
+            while(sum <= 0 && (nums[l] == nums[++l] && l<r)); // to remove duplicate element from left side
+            while( sum >=0 && (nums[r] == nums[--r] && l<r));// to remove duplicate element from right side
+        }
+        while(nums[i] == nums[++i] && i < nums.length-2); // to remove duplicate element from 'i'th place , becoz if we didn't remove duplicate element of 'i'th place we get duplicate ans;
+        }
+        return ans;
+    }
+}
