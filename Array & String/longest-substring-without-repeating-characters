@@ -1,6 +1,12 @@
 https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 
+Tc = O(n) , Space = O(n)
 Using acquire and release technique
+
+Approach = take two pointer at 0 index ,add the value in hashset using insert pointer , if the char value is not present in  hashset then remove it using remove pointer.
+and return the size of hashset.
+
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         if(s.length() == 0) return 0;
