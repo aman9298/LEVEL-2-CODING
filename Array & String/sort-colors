@@ -1,0 +1,31 @@
+https://leetcode.com/problems/sort-colors/description/
+
+concept - https://www.youtube.com/watch?v=oaVa-9wmpns&ab_channel=takeUforward
+
+Time - O(n) , Space =O(1)
+
+class Solution {
+    private void swap(int[]nums , int val1 ,int val2 )
+        {
+            int temp = nums[val1];
+            nums[val1 ] = nums[val2];
+             nums[val2] = temp ;
+        }     
+    public void sortColors(int[] nums) {
+        int low =0 , mid = 0, high = nums.length-1;
+        while(mid <=high)
+        {
+            if(nums[mid] == 0)
+            {
+                swap(nums , low++ ,mid++);
+            }
+            else if(nums[mid]== 2)
+            {
+                 swap(nums, high-- , mid);
+            }
+            else
+                mid++;
+        }
+       
+    }
+}
