@@ -1,3 +1,6 @@
+https://leetcode.com/problems/binary-tree-inorder-traversal/description/
+
+Approach - https://www.codingninjas.com/codestudio/library/morris-traversal-for-inorder
 
 class Solution {
     List<Integer> list = new ArrayList<>();
@@ -9,3 +12,41 @@ class Solution {
         return list;
     }
 }
+
+Morris traversal ----
+
+class Solution {
+    
+    public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> list = new ArrayList<>();
+    while(root != null)
+    {
+        if(root.left == null)
+        {
+            list.add(root.val);
+            root = root.right;
+        }
+        else
+        {
+            TreeNode p1 = root.left ;
+            while(p1.right != null && p1.right!= root)
+            {
+                p1 = p1.right;
+            }
+            if(p1.right== null)
+            {
+                p1.right = root;
+                root = root.left;
+            }
+            else
+            {
+                p1.right = null;
+                list.add(root.val);
+                root = root.right;
+            }
+        }
+    }
+    return list;
+}}
+
+
