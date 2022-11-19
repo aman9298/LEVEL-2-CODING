@@ -24,14 +24,9 @@ class Solution
         while(!q.isEmpty())
         {
             Pair rem = q.remove();
-            if(!map.containsKey(rem.level))
-            {
-                map.put(rem.level , rem.node.data);
-            }
-            else              // only else part is need to add in this code
-            {
-                map.put(rem.level , rem.node.data);
-            }
+            
+            map.put(rem.level , rem.node.data);
+            
             min = Math.min(min , rem.level);
             max = Math.max(max , rem.level);
             
