@@ -1,0 +1,60 @@
+https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1
+
+class Solution
+{
+	ArrayList <Integer> boundary(Node node)
+	{
+	    ArrayList<Integer> res  = new ArrayList<>();
+        	res.add( node.data);
+	if(node.left !=null || node.right!= null)
+	
+	{  if(node == null) return res;
+	    leftboundary(node.left,res );
+	 leaf(node  , res);
+	 rightboundary( node.right , res);
+	     
+	}
+	 return res ;   
+}
+	void leftboundary(Node root , ArrayList<Integer>  res)
+	{
+	    if(root==null) return;
+	    if(root.left !=null)
+	    {
+	        res.add(root.data);
+	      leftboundary(root.left , res);
+	    }
+	    else if(root.right!=null)
+	    {
+	        res.add(root.data);
+	        leftboundary(root.right , res);
+		    }
+	}
+	
+		void leaf(Node root , ArrayList<Integer>  res)
+		{ if(root==null) return;
+		if(root.left == null && root.right == null)
+		{
+		    res.add( root.data);
+		}
+		leaf(root.left , res);
+		leaf(root.right, res);
+		    
+		}
+	void rightboundary(Node root , ArrayList<Integer>  res)
+	{
+	    if(root == null)return;
+	    if(root.right !=null)
+	    {
+	       rightboundary(root.right , res);
+	       res.add(root.data);
+	    }
+	    else if(root.left!= null )
+	    {
+	       rightboundary(root.left , res );
+	       res.add(root.data) ;
+	    }
+	    
+	}
+}
+
