@@ -1,0 +1,24 @@
+https://leetcode.com/problems/binary-tree-right-side-view/description/
+
+Recursive Approach -----
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        traversal(root , 0 , res);
+        return res ;
+        
+    }
+      void traversal (TreeNode node, int level , List<Integer> res)
+     {
+          if(node  == null) return ;
+          if(level == res.size())
+          {
+              res.add(node.val); 
+          }
+          traversal(node.right , level+1 , res);
+          traversal(node.left , level+1 , res);
+     }
+}
+
+Iterative approach -----
+we use Deque instead of Queue , becoz we need last element of queue
