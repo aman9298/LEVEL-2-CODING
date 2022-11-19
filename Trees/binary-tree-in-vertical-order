@@ -1,0 +1,53 @@
+https://practice.geeksforgeeks.org/problems/print-a-binary-tree-in-vertical-order/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+
+class Solution
+{
+    static class Pair
+   {
+       int hd;
+       Node node;
+       public Pair (  Node node,int hd)
+       {
+           this.hd = hd ;
+           this.node = node;
+       }
+        
+    }
+    //Function to find the vertical order traversal of Binary Tree.
+    static ArrayList <Integer> verticalOrder(Node root)
+    {
+        Map<Integer,ArrayList<Integer>> map = new TreeMap<>();
+        Queue<Pair> q = new ArrayDeque<>();
+        q.add(new Pair(root ,0));
+        int min  =0 , max= 0;
+        while(!q.isEmpty())
+        {
+            Pair rem = q.remove();
+            
+                 if(map.containsKey(rem.hd))
+                {
+                    map.get(rem.hd).add(rem.node.data);
+                }
+                else
+                {
+                    ArrayList<Integer> list = new ArrayList<>();
+                    list.add(rem.node.data);
+                    map.put(rem.hd , list) ;
+                }
+            // min = Math.min(min , rem.hd);
+            // max = Math.max(max , rem.hd);
+            
+            if(rem.node.left!=null) q.add(new Pair(rem.node.left , rem.hd-1));
+            if(rem.node.right!=null) q.add(new Pair(rem.node.right , rem.hd+1));
+            
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        for(Map.Entry<Integer,ArrayList<Integer>> entry : map.entrySet())
+        {
+            res.addAll(entry.getValue());
+        }
+        
+            return res;
+    }
+}
