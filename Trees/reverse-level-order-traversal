@@ -1,0 +1,29 @@
+https://practice.geeksforgeeks.org/problems/reverse-level-order-traversal/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+tc - O(N) , Sp = O(N)
+
+class Tree
+{
+    public ArrayList<Integer> reverseLevelOrder(Node node) 
+    {
+        Queue<Node> q = new ArrayDeque<>();
+        Stack<Integer> st = new Stack<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        q.offer(node);
+        while(!q.isEmpty())
+        {
+            Node rem= q.remove();
+           st.add(rem.data);
+            
+            if(rem.right != null) q.add(rem.right);
+            if(rem.left != null) q.add(rem.left);
+            //if(rem.right!= null) q.add(rem.right);
+        
+        }
+        while(!st.isEmpty())
+        {                                   // stack take only O(1) space and time
+            res.add(st.pop());
+        }
+        return res;
+    }
+}      
