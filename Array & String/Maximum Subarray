@@ -1,0 +1,30 @@
+
+Tc - O(N) , Sp (1)
+approach - hum currenSum lenge and MaxSum lenge at Arr[0] . fir loop chlayenge , agr currSum ki value >= 0 hogi to arr[i] add kr denge ni to new list start kr denge arr[i]
+at last compare krte rahenge maxSum and currSum
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int currSum = nums[0];
+        int maxSum = nums[0];
+        for(int i=1 ; i< nums.length;i++)
+        {
+            if(currSum >=0)
+            {
+                    currSum += nums[i];
+
+            }
+            else
+            {
+                currSum = nums[i];
+
+            }
+            if(currSum > maxSum)
+            {
+                maxSum = currSum;
+            }
+        }
+        return maxSum;
+        
+    }
+}
